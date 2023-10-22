@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<!-- Assignment 5 (Task 2) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 5 (Task ?)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus {
+        box-shadow: 0px 0px 1px 1px #8eb5d5;
+        outline: none;
+      }
+
+      input:hover {
+        cursor: pointer;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      input {
+        width: 100px;
+        padding: 10px;
+        background-color: #ecf2f4;
+        border-radius: 5px;
+      }
+
+      th {
+        background-color: #b9b9b9;
+      }
+
+      caption {
+        font-size: 21px;
+        font-weight: bold;
+        padding-top: 30px;
+        padding-bottom: 10px;
+      }
+
+      th, td {
+        padding: 10px;
+        font-size: 20px;
+        border: 1px solid #808080;
+        border-collapse: collapse;
+      }
+
+      table {
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #808080;
+        border-collapse: collapse;
+      }
+
+      .sevenPointFive {
+        background-color: #ff9999;
+      }
+
+      .eightPointZero{
+        background-color: #ffdb99;
+      }
+
+      .otherwise{
+        background-color: #99cc99;
+      }
+
+      tr:nth-child(odd) {
+        background-color: #e0e0e0;
+      }
+
+      .hotelNames {
+        text-align: left;
+      }
+
+      
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+
+      function processRequest()
+      {
+        const xhrObject = new XMLHttpRequest();
+
+        xhrObject.onreadystatechange = function ()
+        {
+          if (this.readyState == 4 && this.status == 200)
+          {
+            processResponse(this.responseXML); // The "responseXML" property is passed as an argument
+            console.log("We are inside the readyState if");
+          }
+        };
+
+        xhrObject.open("get", "A5_Task1.xml", true); // The request is explicitly set to 'asynchronous' mode
+        console.log("We have passed the open command");
+
+        xhrObject.send();
+      }
+
+
+      function processResponse(xmlTree)
+      {
+        var output = "";
+
+        output += "<table>"; //This is basscily just doing it in the HTML bit
+
+        //Want to show as "Wollongong"
+        var simpUrl = xmlTree.getElementsByTagName("comparisons")[0].getAttribute("url");
+        var companyName = xmlTree.getElementsByTagName("comparisons")[0].getAttribute("company");
+
+        output += "<caption>" + "<a href=" + simpUrl + " target=\"_blank\">" + companyName + "</a>" + ": \"" + xmlTree.getElementsByTagName("comparisons")[0].getAttribute("location") + "\" Search Results </caption>";
+
+          output += "<tr>";
+            //The result row would have just take the iteration + 1
+            output += "<th> Result # </th>";
+            output += "<th> Hotel Name </th>";
+            output += "<th> Star Rating </th>";
+            output += "<th> Total Reviews </th>";
+            output += "<th> Overall Score </th>";
+          output += "</tr>";
+
+          output += "<tr>";
+          
+            //This is where I would put a for loop, if i had one, at this time 
+            for (let index = 0; index < xmlTree.getElementsByTagName("hotel").length; index++){
+              numberInArray = (index + 1);
+
+              output += "<tr>";
+                output += "<td>" + numberInArray + "</td>";
+                output += "<td class=\"hotelNames\">" + xmlTree.getElementsByTagName("name")[index].childNodes[0].nodeValue + "</td>";
+
+
+                //Gotta change this one to the images to relate to the rating instead of just listing it 
+               //output += "<td>" + xmlTree.getElementsByTagName("stars")[index].childNodes[0].nodeValue + "</td>";
+
+               var starNum = xmlTree.getElementsByTagName("stars")[index].childNodes[0].nodeValue;
+
+               
+               if (starNum == 1) {
+                    output += "<td><img src=\"https://mywebspace.net.au/UOWC128/assignment_5/images/1_star.png\"></td>";
+                } else if (starNum == 2) {
+                    output += "<td><img src=\"https://mywebspace.net.au/UOWC128/assignment_5/images/2_stars.png\"></td>";
+                } else if (starNum == 3) {
+                    output += "<td><img src=\"https://mywebspace.net.au/UOWC128/assignment_5/images/3_stars.png\"></td>";
+                } else if (starNum == 4) {                    
+                    output += "<td><img src=\"https://mywebspace.net.au/UOWC128/assignment_5/images/4_stars.png\"></td>";
+                } else if (starNum == 5) {                    
+                    output += "<td><img src=\"https://mywebspace.net.au/UOWC128/assignment_5/images/5_stars.png\"></td>";
+                }
+
+                var reviewSaved = xmlTree.getElementsByTagName("reviews")[index].childNodes[0].nodeValue;
+                //Bit complicated to understand but it works
+                var formattedReview = reviewSaved.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+                output += "<td>" + formattedReview + "</td>";
+
+                //Need to make this coloured, there should be the code from assignment 3 I think that kinda does this
+                //output += "<td>" + xmlTree.getElementsByTagName("score")[index].childNodes[0].nodeValue + "</td>";
+                var scoreSaved = xmlTree.getElementsByTagName("score")[index].childNodes[0].nodeValue;
+
+                if (scoreSaved < 7.5){
+                  output += "<td class=\"sevenPointFive\">" + xmlTree.getElementsByTagName("score")[index].childNodes[0].nodeValue + "</td>";
+                } else if (scoreSaved < 8.0){
+                  output += "<td class=\"eightPointZero\">" + xmlTree.getElementsByTagName("score")[index].childNodes[0].nodeValue + "</td>"
+                } else {
+                  output += "<td class=\"otherwise\">" + xmlTree.getElementsByTagName("score")[index].childNodes[0].nodeValue + "</td>"
+                }
+                
+              output += "</tr>";
+            }
+
+          output += "</tr>"
+
+        output += "</table>"; //And closing it off normally
+
+        //Will need to chnage the dated part as to reflect the australian date format
+        var month;
+        var day;
+        var year;
+
+        let date = new Date(xmlTree.getElementsByTagName("comparisons")[0].getAttribute("dated"));
+        console.log(date);
+
+        month = (date.getMonth()+1);
+        console.log("Month is " + month);
+
+        console.log("Day is accordng to the getday " + date.getDay());
+
+        day = (date.getDate());
+
+        console.log("And now updated the var is " + day);
+        year = (date.getFullYear());
+
+        let formattedDate = day + "/" + month + "/" + year;
+
+        console.log("Using the getDate() we get " + date.getDate());
+        //Wait why the f does getdate just give day of month, that's stupid 
+
+
+        output += "<h3> This result set was last updated on " + formattedDate + "</h3>";
+
+        document.getElementById("output-div").innerHTML = output;
+      }
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 5</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 15/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 2: AJAX &amp; XML</h2>
+
+    <!-- BEGIN: Task 2 Solution -->
+
+    <input type="button" id="start" value="Start" onclick="processRequest()">
+
+    <div id="output-div"></div>
+
+    <!-- END: Task 2 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

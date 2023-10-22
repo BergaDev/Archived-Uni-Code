@@ -1,0 +1,13 @@
+/* DPIT115	  		: Data Management and Security
+   SESSION	  		: Summer Session 2020								    */
+   
+   USE csit115;
+
+SELECT (SELECT COUNT(*) FROM EMPLOYEE ) EMPLOYEE,
+       (SELECT COUNT(*) FROM DRIVER ) DRIVER,
+       (SELECT COUNT(*) FROM ADMIN ) ADMIN,
+       (SELECT COUNT(*) FROM TRUCK ) TRUCK,
+       (SELECT COUNT(*) FROM TRIP ) TRIP,
+       (SELECT COUNT(*) FROM TRIPLEG ) TRIPLEG
+FROM DUAL;
+

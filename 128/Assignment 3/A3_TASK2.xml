@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Matthew Bergamini 8137225 -->
+
+<!DOCTYPE comparisons [
+<!ELEMENT comparisons (hotel*)>
+<!ELEMENT hotel (name, stars, reviews, score)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT stars (#PCDATA)>
+<!ELEMENT reviews (#PCDATA)>
+<!ELEMENT score (#PCDATA)>
+
+<!ATTLIST comparisons
+        dated CDATA #REQUIRED
+        location CDATA #REQUIRED
+        company CDATA #REQUIRED
+        url CDATA #REQUIRED>
+]>
+
+<comparisons dated="2023-06-20" location="Wollongong" company="Hotels Combined" url="https://www.hotelscombined.com.au">
+
+  <hotel>
+    <name>Novotel Wollongong Northbeach</name>
+    <stars>4</stars>
+    <reviews>3303</reviews>
+    <score>7.7</score>
+  </hotel>
+
+  <hotel>
+    <name>Sage Hotel Wollongong</name>
+    <stars>4</stars>
+    <reviews>3941</reviews>
+    <score>7.4</score>
+  </hotel>
+
+  <hotel>
+    <name>Adina Apartment Hotel Wollongong</name>
+    <stars>4</stars>
+    <reviews>1169</reviews>
+    <score>8.4</score>
+  </hotel>
+
+  <hotel>
+    <name>Quality Suites Pioneer Sands</name>
+    <stars>4</stars>
+    <reviews>610</reviews>
+    <score>8.2</score>
+  </hotel>
+
+  <hotel>
+    <name>Mantra Wollongong</name>
+    <stars>4</stars>
+    <reviews>1045</reviews>
+    <score>7.2</score>
+  </hotel>
+
+  <hotel>
+    <name>Boat Harbour Motel</name>
+    <stars>3</stars>
+    <reviews>1757</reviews>
+    <score>7.9</score>
+  </hotel>
+  
+</comparisons>

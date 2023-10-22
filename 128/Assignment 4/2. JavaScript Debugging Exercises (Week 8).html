@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<!-- Week 8: JavaScript Debugging Exercises; Created by Jason Rodriguez -->
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Week 8: JavaScript Debugging Exercises</title>
+
+    <style>
+
+      hr {
+        border: none;
+        border-top: 1px dashed #939393;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      input[type="button"]:hover {
+        cursor: pointer;
+      }
+
+    </style>
+
+    <script>
+
+      function showAlert()
+      {
+        alert(("Debugged!"));
+      }
+
+      function changeText()
+      {
+        document.getElementById("output").innerHTML = "Debugged!";
+      }
+
+      function changeStyle()
+      {
+        const myHeading = document.getElementById("output");
+
+        myHeading.style.color = "green";
+        myHeading.style.fontSize = "30px";
+        myHeading.style.fontStyle = "italic";
+      }
+
+      function myTest()
+      {
+       var userInput = prompt("What is your name?");
+        alert("Well done" + userInput + ". You have debugged this section!");
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <h1>Week 8: JavaScript Debugging Exercises</h1>
+
+    <h3>Use your browser&apos;s <a href="https://developers.google.com/web/tools/chrome-devtools/" target="_blank">Developer Tools</a> to help you debug any problems in the following code.</h3>
+
+    <hr>
+
+    <input type="button" value="Task 1" onclick="showAlert();">
+
+    <h4>Debugging Hints:</h4>
+
+    <ul>
+      <li>Be sure to consider all aspects of the code implementation (including HTML &amp; JavaScript components).</li>
+      <li>This section should display a JavaScript alert whenever the button is clicked.</li>
+    </ul>
+
+    <hr>
+
+    <input type="button" value="Task 2" onclick=console.log('Debugged!');>
+
+    <h4>Debugging Hints:</h4>
+
+    <ul>
+      <li>Event attribute declarations and inline JavaScript syntax (including <span style="font-weight: bold;">function</span> calls) must be suitable/correct.</li>
+      <li>This section should log text in the console whenever the button is clicked.</li>
+    </ul>
+
+    <hr>
+
+    <input type="button" value="Task 3" onclick="changeText();">
+
+    <h2 id="output">Bugged!</h2>
+
+    <h4>Debugging Hints:</h4>
+
+    <ul>
+      <li>It is important to understand how HTML DOM methods can obtain user input and modify existing elements.</li>
+      <li>This section should alter the text value contained within the <code style="font-size: 14px;">&lt;h2&gt;</code> element featured above.</li>
+    </ul>
+
+    <hr>
+
+    <input type="button" value="Task 4" onclick="changeStyle();">
+
+    <h4>Debugging Hints:</h4>
+
+    <ul>
+      <li>Element modifications can have stylistic, sizing/positioning and content-related aspects.</li>
+      <li>This section should alter the text styling contained within the <code style="font-size: 14px;">&lt;h2&gt;</code> element featured in <span style="font-weight: bold;">Task 3</span>.</li>
+    </ul>
+
+    <hr>
+
+    <input type="button" value="Task 5" onkeypress="myTest();">
+
+    <h4>Debugging Hints:</h4>
+
+    <ul>
+      <li>JavaScript syntax/logic is perhaps the most challenging aspect in larger projects (so code carefully).</li>
+      <li>This section should prompt the user for input, concatenate the value with a string literal and then display the result in a JavaScript alert.</li>
+    </ul>
+
+    <hr>
+
+    <p style="color: #a3a3a3;">Created by Jason Rodriguez (Version 2.0)</p>
+
+  </body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task ?)</title>
+    <style>
+        /* Your CSS styles */
+    </style>
+    <script>
+
+const form = document.querySelector('.interface form');
+form.addEventListener('change', handleFormChange);
+form.addEventListener('input', handleFormChange);
+
+document.addEventListener("DOMContentLoaded", loadEffects);
+
+
+        function loadEffects() {
+            const output = document.getElementById("reflection"); // Obtain a reference to the output element
+
+            if (localStorage.getItem('textColour')) {
+                // Set the "color" styling to the existing localStorage value
+                output.style.color = localStorage.getItem('textColour');
+
+                // Set the corresponding <select> element to the existing localStorage value
+                document.getElementById("textColour").value = localStorage.getItem('textColour');
+            } else {
+                // Set the "color" styling to the <select> element's default value
+                output.style.color = document.getElementById("textColour").value;
+            }
+        }
+
+        function handleFormChange() {
+            const backgroundColour = document.querySelector('input[name="backColour"]:checked').value;
+            const textColour = document.getElementById("textColour").value;
+            const boxShadowDepth = document.getElementById("boxShadow").value;
+            const borderStyleValue = document.querySelector('input[name="borderStyle"]:checked').value;
+
+            // Store the values in local storage
+            localStorage.setItem('backgroundColour', backgroundColour);
+            localStorage.setItem('textColour', textColour);
+            localStorage.setItem('boxShadowDepth', boxShadowDepth);
+            localStorage.setItem('borderStyleValue', borderStyleValue);
+
+            console.log("Stored textColour is " + textColour);
+        }
+
+        document.addEventListener("DOMContentLoaded", loadEffects);
+    </script>
+</head>
+<body>
+<h1>DPIT128: Assignment 4</h1>
+<h2>INSERT FULL NAME (INSERT STUDENT NUMBER)</h2>
+<h3>Date Due: 01/09/2023</h3>
+<hr>
+<p style="font-weight: bold;">
+    I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+    <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf"
+       target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+    </a>
+</p>
+<hr>
+<h2>Task 4: Local Storage and JavaScript Styling</h2>
+
+<!-- BEGIN: Task ? Solution -->
+
+<div class="interface">
+    <form>
+        <label for="backColour">Background Colour:</label>
+        <input type="radio" name="backColour" value="#ff0000"> Red
+        <input type="radio" name="backColour" value="#00ff00"> Green
+        <input type="radio" name="backColour" value="#0000ff"> Blue<br>
+
+        <label for="textColour">Text Colour:</label>
+        <select id="textColour">
+            <option value="#ffe5e5">Red (#ffe5e5)</option>
+            <option value="#e5f2e5">Green (#e5f2e5)</option>
+            <option value="#e5e5ff">Blue (#e5e5ff)</option>
+        </select><br>
+
+        <label for="boxShadow">Box Shadow Depth: </label>
+        <input type="range" id="boxShadow"> <br>
+
+        <label for="borderStyle1">Border Style Value: </label>
+        <input type="radio" name="borderStyle" value="dotted"> Dotted
+        <input type="radio" name="borderStyle" value="solid"> Solid
+    </form>
+</div>
+
+<div class="reflection" id="reflection">
+    <h1 class="text">Introduction to Web Technology</h1>
+</div>
+
+<!-- END: Task ? Solution -->
+
+<p>&copy; INSERT FULL NAME</p>
+</body>
+</html>

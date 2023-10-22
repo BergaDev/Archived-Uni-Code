@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4 (Task ?) by INSERT FULL NAME (INSERT STUDENT NUMBER) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task ?)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus {
+        box-shadow: 0px 0px 1px 1px #95b7ee;
+        outline: none;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      div {
+        margin: 10px;
+        padding: 10px;
+        border: 1px dotted #a8a8a8;
+        border-color: #dbdbdb;
+        display: inline-block;
+
+      }
+
+      label {
+        color: #76797a;
+      }
+
+      input {
+        border: 1px dotted #468499;
+        background-color: #ecf2f4;
+        color: #2f3030;
+      }
+
+      button {
+        background-color: #ecf2f4;
+      }
+
+      #title {
+        background-color: red;
+      }
+
+      #hidden {
+        display: none;
+      }
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+      let box1;
+      let box2;
+      let box3;
+      let box4;
+      let box5;
+      let box6;
+
+      let i = 0;
+      let sum = 0;
+      let NaNCheck = false;
+      let minValue = Infinity;
+      let maxValue = -Infinity;
+
+      function onPress(){
+        box1 = parseFloat(document.getElementById("one").value); // Parse input as float
+        box2 = parseFloat(document.getElementById("two").value);
+        box3 = parseFloat(document.getElementById("three").value);
+        box4 = parseFloat(document.getElementById("four").value);
+        box5 = parseFloat(document.getElementById("five").value);
+        box6 = parseFloat(document.getElementById("six").value);
+
+        boxes = [box1, box2, box3, box4, box5, box6];
+
+        console.log("Value of 1 is " + box1 + " Value of 6 is " + box6);
+        console.log("Values of boxes:", boxes);
+
+        
+
+        while (i < boxes.length) {
+            console.log(boxes[i]);
+            sum = (sum + (boxes[i])); //Sum
+            
+            NaNCheck = false;
+
+            if (boxes[i] < minValue) {
+              minValue = boxes[i]; // Update minValue if the current value is lower
+              console.log("Min is " + minValue);
+              }
+      
+              if (boxes[i] > maxValue) {
+                maxValue = boxes[i]; // Update maxValue if the current value is higher
+                console.log("Max is " + maxValue);
+              }
+
+              i++; //Move this down here, otherwise would skip first item in range
+          }
+
+          const sortedBoxes = boxes.filter(value => !isNaN(value)).sort((a, b) => a - b);
+          const middleIndex = Math.floor(sortedBoxes.length / 2);
+
+          const median = sortedBoxes.length % 2 === 0
+          ? (sortedBoxes[middleIndex - 1] + sortedBoxes[middleIndex]) / 2
+          : sortedBoxes[middleIndex];
+        
+        
+
+        if (sum >= 0){
+          sum = sum;
+        } else {
+          NaNCheck = true;
+          console.log("Shit");
+        }
+        console.log("This is the num " + sum);
+        
+        const average = (sum / i); //Avg
+        const range = maxValue - minValue;
+
+        console.log("Range is " + range);
+
+        
+
+        if (NaNCheck == true){
+          console.log("Not a number detected");
+          clearVars();
+
+        } else {
+          const table = document.createElement("table");
+
+          const tableRow1 = table.insertRow();
+          const tableCell1 = document.createElement("th");
+          const tableCell2 = tableRow1.insertCell();
+
+          tableCell1.textContent = "Sum of Values";
+          tableCell2.textContent = parseFloat(sum).toFixed(2);
+
+          const tableRow2 = table.insertRow();
+          const tableCell3 = tableRow2.insertCell();
+          const tableCell4 = tableRow2.insertCell();
+
+          tableCell3.textContent = "Average of Values";
+          tableCell4.textContent = average.toFixed(2);
+
+          const tableRow3 = table.insertRow();
+          const tableCell5 = document.createElement("th");
+          const tableCell6 = tableRow3.insertCell();
+
+          tableCell5.innerHTML = "<th>Range of Values</th>"; // Create a header cell
+          tableCell6.textContent = range.toFixed(2);
+
+          const tableRow4 = table.insertRow();
+          const tableCell7 = tableRow4.insertCell();
+          const tableCell8 = tableRow4.insertCell();
+
+          tableCell7.textContent = "Lowest Value";
+          tableCell8.textContent = minValue.toFixed(2);
+
+          const tableRow5 = table.insertRow();
+          const tableCell9 = tableRow5.insertCell();
+          const tableCell10 = tableRow5.insertCell();
+
+          tableCell9.textContent = "Highest Value";
+          tableCell10.textContent = maxValue.toFixed(2);
+
+          const tableRow6 = table.insertRow();
+          const tableCell11 = document.createElement("th");
+          const tableCell12 = tableRow6.insertCell();
+
+          tableCell11.textContent = "Median Value";
+          tableCell12.textContent = median.toFixed(2);
+
+          const summaryTableDiv = document.getElementById("summaryTableDiv");
+          summaryTableDiv.innerHTML = ""; // Clear previous content
+          summaryTableDiv.appendChild(table);
+
+
+          }
+        
+
+          clearVars();
+
+  }
+        
+        
+
+      function clearVars(){
+        i = 0;
+        sum = 0;
+        average = 0;
+      }
+
+        
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 4</h1>
+    <h2>INSERT FULL NAME (INSERT STUDENT NUMBER)</h2>
+    <h3>Date Due: 01/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task ?: ?</h2>
+
+    <!-- BEGIN: Task ? Solution -->
+
+
+    <div id="div1">
+      <input type="text" id="one" value="" autofocus><br>
+      <label for="one">1</label>
+    </div>
+    
+    <div id="div2">
+      <input type="text" id="two" value=""><br>
+      <label for="two">2</label>
+    </div>
+    
+    <div id="div3">
+      <input type="text" id="three" value=""><br>
+      <label for="three">3</label>
+    </div>
+    
+    <div id="div4">
+      <input type="text" id="four" value=""><br>
+      <label for="four">4</label>
+    </div>
+    
+    <div id="div5">
+      <input type="text" id="five" value=""><br>
+      <label for="five">5</label>
+    </div>
+
+    <div id="div6">
+      <input type="text" id="six" value=""><br>
+      <label for="six">6</label>
+    </div> <br><br>
+    
+
+    <button id="start" onclick="onPress()">Start</button> <br><br>
+
+    <div id="summaryTableDiv"></div>
+
+    <table id="hidden">
+      <tr>
+        <th>Company</th>
+        <th>Contact</th> 
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td> 
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td> 
+        <td>Mexico</td>
+      </tr>
+    </table>
+
+
+    <!-- END: Task ? Solution -->
+
+    <p>&copy; INSERT FULL NAME</p>
+  </body>
+</html>

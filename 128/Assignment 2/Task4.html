@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<!-- Assignment 2 (Task 1) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 2 (Task 4)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      .container {
+        border: 1px dotted #404040;
+        box-shadow: 5px 5px 5px #808080;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 665px;
+      }
+
+      .field-label {
+        float: left;
+        line-height: 27px;
+        width: 110px;
+      }
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        box-shadow: 0px 0px 1px 1px #99c65c;
+        outline: none;
+      }
+
+      input[type="reset"], input[type="submit"], label {
+        height: 25px;
+        width: 60px;
+      }
+
+      input[type="reset"], input[type="submit"], select {
+        border: 1px dotted #404040;
+      }
+
+      input[type="reset"]:hover, input[type="submit"]:hover, label:hover, select:hover {
+        cursor: pointer;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      .main {
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        }
+
+        /*Don't include label here, will cause stacking*/
+        input,
+        select,
+        textarea,
+        button {
+            /* Display block makes it so that things start one below the other*/
+            display: block;
+            margin-bottom: 10px;
+            margin: auto;
+        }
+
+        div{
+            box-shadow: 5px 5px 5px #808080;
+            /* Apply Shadow Rule */
+            border-radius: 5px;
+        border: 1px dotted #404040 ;
+        }
+      
+
+    </style>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 2</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 28/07/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 4</h2>
+
+    <!-- BEGIN: Task 4 Solution -->
+
+    <!-- Should be done -->
+
+    <div class="main" style="background-color: #f9fff9;">
+        <img src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_4.png" alt="Image with the text 'feedback'">
+        <form action="https://mywebspace.net.au/UOWC128/assignment_2/php/task_4.php" method="post">
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" required>
+      
+            <label for="email-address">Email Address:</label>
+            <input type="email" id="email-address" name="email-address" required>
+      
+            <label for="services">Services Submitted:</label>
+            <!-- Need to include [] in the name to work with PHP correctly -->
+            <select name="services[]" id="services" multiple>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+              <option value="option4">Option 4</option>
+            </select>
+      
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" required></textarea>
+      
+            <button type="submit">Submit</button>
+          </form>
+    </div>
+
+    <!-- END: Task 4 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

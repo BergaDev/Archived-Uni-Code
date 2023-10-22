@@ -1,0 +1,247 @@
+The scenario for the lab is a simplified Car Insurance Company and insurance policies. You
+will work on the same scenario throughout the session for all the labs and the assignments.
+Study week 1 lecture codes in depth before attempting the lab:
+Car has these attributes:
+- String model;
+- CarType type; // CarType is an enum { SUV,SED,LUX,HATCH,etc }
+- int ManufacturingYear;
+- double price;
+There are two different types of Insurance Policies: ThirdPartyPolicy and
+ComprehensivePolicy.
+All Policies have the following attributes in common (The parent class: InsurancePolicy):
+- String policyHolderName;
+- int id;
+- Car car;
+- int numberOfClaims;
+ThirdPartyPolicy class has the following additional attributes:
+- Sting comments;
+ComprehensivePolicy class has the following additional attributes:
+- int driverAge;
+- int level;
+The premiums for each policy is calculated as follow:
+ Third Party Premium = CarPrice/100+numberOfClaims x 200+flatRate
+ Comprehensive Premium = CarPrice/50+numberOfClaims x 200+flatRate
+o If the driverAge is less than 30 then add (30-driverAge) x 50 to the
+comprehensive premium
+The flatRate will be set by the manager and will be sent to the calculation from outside as a
+parameter (currently from test code in main).
+1- Write the Java code to define the class Car as well as enum CarType. (0.5 mark)
+2- Write an abstract base class called InsurancePolicy for the above scenario. This class
+supports the common features of all policies. (0.5 mark)
+4- Write two sub classes called ThirdPartyPolicy and ComprehensivePolicy for the scenario.
+(0.5 mark)
+5- Write a print method for these classes. Use super.print ( ) in children classes. (0.5 mark)
+5- Override the calcPayment method based on the description for Premium Payment. (0.5
+mark)
+6- Add toString() to all classes. (0.5 mark)
+7- Write a test code that creates a mixture of ThirdPartyPolicy and ComprehensivePolicy
+objects, then places them in a single list of policies, print all the policies in the list by using
+print method and then by using toString method. Then calculates their total premium
+payments and finally prints the total with user friendly prompts. Note that the flatRate should
+be stored as a constant in your test code and then is sent it to the methods as a parameter. (2
+marks)
+0.5 for list, 0.5 for print, 0.5 for toString, 0.5 for total payment
+
+In lab 2, you will continue on the same scenario from lab 1 to improve it. The improvement
+in term of software engineering is called Iteration. So you are working on another iteration of
+Car Insurance Provider Company System. Study week 2 lecture codes (Both bank and library
+examples) in depth before attempting this lab. Also watch Lab 2 Recorded Tutorial:
+1) Add a new class MyDate with these attributes: 0.25 marks
+- int year;
+- int month;
+- int day;
+Add a field to your InsurancePolicy class to store the expiry date for the policy:
+- MyDate expiryDate;
+2) Add a new class Address with these attributes: 0.25 marks
+- int streetNum;
+- String street;
+- String suburb;
+- String city;
+3) Add mutators (set methods), and assessors (get methods) to your Car, MyDate, Address,
+and InsurancePolicy classes.
+4) Add these methods to your InsurancePolicy class: 1.5 marks: 0.3 marks for each method
+- static void printPolicies(ArrayList< InsurancePolicy > policies) // prints a list of policies.
+You had this in your main ( ) in lab 1. Move it to this method. Study printAccounts in Bank
+lecture code or printBooks or printUsers in Library lecture code.
+- static double calcTotalPayments (ArrayList< InsurancePolicy> policies, int flatRate)
+//calculates the total premium payments for a list of policies. You had this in your main ( ) in
+lab 1. Move it to this method. Study calcTotalBalance in Bank lecture code.
+- void carPriceRise(double risePercent) // It has one parameter, a price rise in percent. The
+method increases the policy’s car price by rise percent. (e.g., 0.1 as rise percentage means
+the car price to be increased by 10% i.e., price= price x 1.1).
+Bad Design: You can call Car setPrice and getPrice methods for policy’s car to do it as
+below:
+car.setPrice(car.getPrice()*(1+risePercent);
+Good Design: Add a new method priceRise(double rise) to Car and call this method in
+carPriceRise
+- static void carPriceRiseAll(ArrayList< InsurancePolicy > policies, double risePercent) //
+calls the carPriceRise method for all the policies in a given list ( in a for each loop). This is
+to increase the price of cars for all policies in a list.
+- static ArrayList<InsurancePolicy> filterByCarModel (ArrayList<InsurancePolicy>
+policies, String carModel) // which filter a list of policies and creates a filtered list of
+policies, all with the given car model . See filterByName and filterByAuthor in Library
+example.
+5- Write a class User with the following fields and methods: 1.5 marks
+- private String name; // the name of the account holder
+- private int userID; // the user ID/number
+- private Address address; // you need to define the Address class as described
+- ArrayList< InsurancePolicy> policies // list of all the Insurance Policies this user
+holds
+- Constructor, mutators (set methods) and assessors (get methods) if necessary and not
+for all fields.
+- boolean addPolicy (InsurancePolicy policy) // adds a policy, returns true if
+successful (when policyID is unique) and returns false if not. See addBook() and
+addUser() methods in Library example
+- InsurancePolicy findPolicy (int policyID) // finds the policy and returns it. Returns
+null if policyID does not exist. See findBook() and findUser() methods in Library
+example
+- void print() // prints all the information of this user including all the policies
+information
+- String toString() // converts the user and his/her policies to String
+- void printPolicies(int flatRate) // prints all the policies this user owns as well as the
+premium payment for each policy by calling the corresponding static method inside
+InsurancePolicy (add new one to print the list as well as the premium) or just call
+print and calcPremium methods inside InsurancePolicy in a loop.
+- double calcTotalPremiums (int flatRate) // returns the total premium payments for
+this user by calling the corresponding static method inside InsurancePolicy.
+- void carPriceRiseAll (double risePercent) // calls the corresponding static method
+inside InsurancePolicy to increase the car price for all the policies the user owns
+- ArrayList< InsurancePolicy > filterByCarModel (String carModel) // filters the
+policies and returns a list of policies with the car model containing the given
+carModel by calling the corresponding static method inside InsurancePolicy.
+6- Add this test code to your main: 1.5 marks: 0.1 marks for each test item excluding creating
+the policies
+- Create few third-party and comprehensive polices and one user in your main.
+- Add the policies to the user by using addPolicy( )
+- call the print method for the user (note that user.print ( ) also prints all the policies)
+- print the user by using toString() (Note that toString includes all the policies’ details in
+addition to user information)
+- Find a policy by using findPolicy() for a given policy ID when the ID is not valid and show
+an error message: “Policy has not been found”
+- Find a policy by using findPolicy() with a given policy ID (valid) and save it in a policy
+object to be used for following steps.
+- print this policy, call carPriceRise with 0.1 rise for this policy and print it again
+- change the policyHolderName of this policy to “Robert” by using
+setPolicyHolderName (String newName)
+- change the car model of this policy to “Toyota Camry 2018” by using
+Policy.SetCarModel(String model) which calls Car.setModel(String model)
+- change the city of the user to “Wollongong” by using User.SetCity(String city) which calls
+Address.setCity(String city)
+- ask the customer to enter the information for a new address (by using Scanner) and change
+the address of the user by using setAddress(address) and print the user after change.
+- print the total premium payments for all policies this user owns
+- add 10% to the price of cars for all the policies this user owns
+- print the total premium payments for all policies this user owns again
+- ask the customer to enter a carModel then call filterByCarModel method for the user and
+store the filtered list.
+- print the filtered list by calling the static method inside InsurancePolicy
+
+In lab 3, you will continue on another iteration for the same scenario from lab 1 and 2.
+1) Add these methods to your InsurancePolicy class: 0.25 marks
+- static ArrayList<InsurancePolicy> filterByExpiryDate (ArrayList<InsurancePolicy>
+policies, MyDate date) // which filter a list of policies and creates a filtered list of policies
+that are expired by the given date. To do this add a new method Boolean isExpired( MyDate
+expiryDate) to your MyDate class, which compares the given date with the object and
+returns false if the date is before that given expiryDate or true it is after that date.
+2) Add these methods to your User class: 0.75 marks: 0.25 marks for each method
+- boolean createThirdPartyPolicy( String policyHolderName, int id, Car car, int
+numberOfClaims, MyDate expiryDate, String comments ) // creates a Third-Party Policy and
+adds it to the list of the user’s policies, returns false if the id is not unique. Create an object
+from ThirdPartyPolicy and call addPolicy method to add it to the list
+- boolean createComprehensivePolicy( String policyHolderName, int id, Car car, int
+numberOfClaims, MyDate expiryDate, int driverAge, int level) // creates a Comprehensive
+Policy and adds it to the list of the user’s policies, returns false if the id is not unique. Create
+an object from ComprehensivePolicy and call addPolicy method to add it to the list
+- ArrayList<InsurancePolicy> filterByExpiryDate (MyDate date) // filters the policies and
+returns a list of policies with the expiry date before the given date by calling the
+corresponding static method inside InsurancePolicy
+3) Write a class InsuranceCompany with the following fields and methods: 2 marks. 0.1
+mark for each method
+- String name;
+- private ArrayList<User>users // list of all the users having a policy with the company
+- private String adminUsername
+- private String adminPassword;
+- private int flatRate;
+- Constructors, mutators (set methods) and assessors (get methods) if necessary
+- boolean validateAdmin( String username, String password) // returns true if
+username and password matches the admin login details
+- boolean addUser(User user) // adds the user to users list if userID is unique, if not
+returns false
+- Boolean addUser(String name, int userID, Address address) // creates and adds the
+User to users list if userID is unique, if not returns false. Create a user object and
+reuse the addUser(User user) method
+- User findUser(int userID) // finds the user with the given ID or returns null if user
+does not exist
+- boolean addPolicy (int userID, InsurancePolicy policy) // finds the user with the
+given userID by using findUser method and adds the policy to the user, unsuccessful
+if userID does not exist or policy is not unique
+- InsurancePolicy findPolicy (int userID ,int policyID) // finds the insurance policy for
+the given userID and returns it. Returns null if userID does not exist or policyID does
+not exist for the given user
+- void printPolicies(int userID) // prints the user information and all the policies for the
+given userID
+- void print() // prints all the users and for each user all the policies by calling User.
+PrintPolicies(int flatRate)
+- String toString() // coverts the whole object to string ( including all the users and
+their policies). Hint: call toString() for users in a loop and concatenate them
+- boolean createThirdPartyPolicy(int userID, String policyHolderName, int id, Car car,
+int numberOfClaims, MyDate expiryDate, String comments) // finds the user with the
+given userID (by calling findUser) and calls the createThirdPartyPolicy for that user.
+Returns false if the user does not exist or if User.createThirdPartyPolicy returns false
+- boolean createComprehensivePolicy( int userID, String policyHolderName, int id,
+Car car, int numberOfClaims, MyDate expiryDate, int driverAge, int level ) // finds
+the user with the given userID (by calling findUser) and calls the
+createComprehensivePolicy for that user. Returns false if the user does not exist or if
+User.createComprehensivePolicy returns false
+- double calcTotalPayments(int userID) // returns the total premium payments for the
+given user
+- double calcTotalPayments () // returns the total premium payments for all the users in
+the company
+- boolean carPriceRise (int userID, double risePercent) // calls carPriceRiseAll method
+for the given user. Returns false if user cannot be found
+- void carPriceRise(double risePercent) // Raise the price of all cars for all users in the
+company
+- ArrayList<InsurancePolicy> allPolicies () // returns a list of all the policies in the
+company across all users
+- ArrayList<InsurancePolicy> filterByCarModel (int userID, String carModel) // find
+the user by calling findUser and calls filterByCarModel for the given user
+- ArrayList<InsurancePolicy> filterByExpiryDate (int userID, MyDate date) // find the
+user by calling findUser and calls filterByExpiryDate for the given user
+- ArrayList<InsurancePolicy> filterByCarModel (String carModel) // filters all the
+policies in the company by carModel across all users. Iterate over a loop for all users
+and for each user call the filterByCarModel method and add all the results together
+for a global list including all users.
+- ArrayList<InsurancePolicy> filterByExpiryDate (MyDate date) // filters all the
+policies in the company by ExpiryDate across all users. The same as above
+4) Add this test code to your main: 2 marks
+1- You have one user from lab 2. Create few more users and more policies and one
+insuranceCompany in your main
+2- Login to the insuranceCompany once successful and once not successful with proper
+prompting
+3- Add users to the insuranceCompany by using both versions of addUser() and at least once
+not successful with prompting
+4- Add several polices to the users by calling addPolicy (int userID, InsurancePolicy policy),
+at least once not successful with wrong userID and once with duplicate policy with
+prompting
+5- Add several polices to some users by calling createThirdPartyPolicy() and
+createComprehensivePolicy() , at least once not successful with wrong userID and once
+with duplicate policy ID with prompting
+6- Ask customer to enter a userID and print the user and all of his policies by using methods
+inside insuranceCompany
+7- Ask customer to enter a userID and policyID and find a policy with the given policyID for
+that userID by calling findPolicy (int userID ,int policyID) and then print the policy.
+8- Print all the users inside the insuranceCompany
+9- Raise the price of cars for all users and policies by 10% and print the users again
+10- Print the total premium payments for a given userID by calling calcTotalPayments
+(int userID)
+11- Print the total premium payments for all users in the company
+12- Call allPolicies() for the insuranceCompany and store it in an ArrayList and print the
+list by using InsurancePolicy.printPolicies()
+13- For a given userID and expiry date call filterByExpiryDate (int userID, MyDate
+date), store the filtered list and print the list by using InsurancePolicy.printPolicies()
+14- For a given car model call insuranceCompany.filterByCarModel (String carModel)
+and print the filtered list
+15- Ask user to enter a date (year, month, and day) and call filterByExpiryDate (MyDate
+date) and print the filtered list
+16- Find a user with the given ID (valid) and save it in a user object. Ask user to provide
+a new address and change the current address for the given user

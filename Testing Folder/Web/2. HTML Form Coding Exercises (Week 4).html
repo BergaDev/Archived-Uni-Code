@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<!-- Week 4: HTML Form Coding Exercises; Created by Jason Rodriguez -->
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Week 4: HTML Form Coding Exercises</title>
+
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      .align-centre {
+        text-align: center;
+      }
+
+      .bottom-row {
+        margin-top: 20px;
+      }
+
+      .field-label {
+        display: inline-block;
+        width: 115px;
+      }
+
+      .form-container {
+        border: 1px dotted #0d5257;
+        border-radius: 20px;
+        font: 14px arial;
+        margin-bottom: 27px;
+        padding: 20px;
+        width: 450px;
+      }
+
+      .form-logo {
+        border-radius: 10px 40px;
+        display: block;
+      }
+
+      .intermediate-row {
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      .top-row {
+        margin-bottom: 20px;
+      }
+
+      hr {
+        border: none;
+        border-top: 1px dashed #939393;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      table, td, th {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+      }
+
+      td, th {
+        padding: 10px;
+      }
+
+      th {
+        background-color: #d3d3d3;
+      }
+
+      input[type="text"] {
+        border: 1px dotted #333333;
+        border-radius: 3px;
+        font: inherit;
+        padding: 3px;
+        width: 315px;
+      }
+
+      input:focus {
+        box-shadow: 0px 0px 1px 1px #999999;
+        outline: none;
+      }
+
+      input:not([type="text"]):hover, label:hover {
+        cursor: pointer;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <h1>Week 4: HTML Form Coding Exercises</h1>
+
+    <hr>
+
+    <h3>The following THREE tasks will utilise this HTML form:</h3>
+
+    <div class="form-container" style="background: #cedcdd;">
+
+      <form action="https://www.bunnings.com.au/search/products" method="post">
+
+        <img src="https://mywebspace.net.au/UOWC128/laboratories/laboratory_4/images/bunnings_exercise_logo.png" class="?">
+
+        <div class="intermediate-row">
+          <div class="field-label">
+            <label for="text">Search Term(s):</label>
+          </div>
+          <input type="text" name="q" id="q">
+        </div>
+
+        <div class="intermediate-row">
+          <div>
+            <input type="radio" name="sort-price" id="price-ascending" value="PriceAscending">
+            <label for="sort-price">Sort Price Ascending</label>
+          </div>
+          <div>
+            <input type="radio" name="sort-name" id="name-ascending" value="NameAscending">
+            <label for="sort-name">Sort Name Ascending</label>
+          </div>
+        </div>
+
+        <div class="bottom-row">
+          <input type="button" value="Submit">
+        </div>
+
+      </?>
+
+    </div>
+
+    <hr>
+
+    <h3>Task 1: Find and fix any errors/omissions in the form source code.</h3>
+
+    <ul>
+      <li>You may consider the form to be &apos;fully operational&apos; when you are able to correctly search the Bunnings online store.</li>
+      <li>You may <a href="https://www.bunnings.com.au" target="_blank">visit the store</a> and use its search facility to understand more about the way it functions.</li>
+    </ul>
+
+    <hr>
+
+    <h3>Task 2: Add a reset button to the form interface (adjacent to the &quot;submit&quot; button).</h3>
+
+    <ul>
+      <li>A reset button will enable the user to set all values back to their default state.</li>
+    </ul>
+
+    <hr>
+
+    <h3>Task 3: Add a checkbox to the form interface (immediately above the &quot;submit&quot; button) to display items that can be delivered.</h3>
+
+    <ul>
+      <li>You may consider this feature to be &apos;fully operational&apos; when you are able to reproduce the output shown below.</li>
+      <li>You may <a href="https://www.bunnings.com.au" target="_blank">visit the store</a> and use its search facility to understand more about the way it functions.</li>
+    </ul>
+
+    <img src="https://mywebspace.net.au/UOWC128/laboratories/laboratory_4/images/delivery_results.png" alt="Bunnings Search Results" style="border: 1px dotted black;">
+
+    <p><span style="font-weight: bold;">Note:</span> The above results are based on &quot;Hammer&quot;, &quot;Sort by Product Name (A-Z)&quot; and &quot;Delivery Product Range&quot; as the search/filter values.</p>
+
+    <hr>
+
+    <h3>Task 4: Use the <a href="https://www.alibaba.com/" target="_blank">alibaba.com</a> website to search for the following items:</h3>
+
+    <table>
+      <tr>
+        <th>Search Value</th>
+        <th>Form Handler</th>
+        <th>Search Parameter</th>
+      </tr>
+      <tr>
+        <td>Nintendo</td>
+        <td class="align-centre" rowspan="3">?</td>
+        <td class="align-centre" rowspan="3">?</td>
+      </tr>
+      <tr>
+        <td>Ryzen</td>
+      </tr>
+      <tr>
+        <td>R2-D2</td>
+      </tr>
+    </table>
+
+    <p><span style="font-weight: bold;">Objective:</span> Identify the form handler and search parameter that is common to each result.</p>
+
+    <hr>
+
+    <h3>Task 5: Use the <a href="https://www.ebay.com.au" target="_blank">eBay Australia</a> website to search for the following items:</h3>
+
+    <table>
+      <tr>
+        <th>Search Value</th>
+        <th>Category</th>
+        <th>Form Handler</th>
+        <th>Search Parameter</th>
+        <th>Category Parameter</th>
+        <th>Category Value</th>
+      </tr>
+      <tr>
+        <td>DDR4 RAM</td>
+        <td>Computers/Tablets &amp; Networking</td>
+        <td class="align-centre" rowspan="4">?</td>
+        <td class="align-centre" rowspan="4">?</td>
+        <td class="align-centre" rowspan="4">?</td>
+        <td class="align-centre">?</td>
+      </tr>
+      <tr>
+        <td>Doctor Strange</td>
+        <td>Movies</td>
+        <td class="align-centre">?</td>
+      </tr>
+      <tr>
+        <td>Lead Free Solder</td>
+        <td>Electronics</td>
+        <td class="align-centre">?</td>
+      </tr>
+      <tr>
+        <td>Nike Air</td>
+        <td>Clothing, Shoes, Accessories</td>
+        <td class="align-centre">?</td>
+      </tr>
+    </table>
+
+    <p><span style="font-weight: bold;">Objective:</span> Identify the form handler, search parameter and category parameter that is common to each result. Also note the category value that applies in each case.</p>
+
+    <hr>
+
+    <h3>Task 6: Design a simple HTML form to interact with the <a href="https://www.ebay.com.au" target="_blank">eBay Australia</a> website using the information obtained from &quot;Task 5&quot;.</h3>
+
+    <ul>
+      <li>You may consider this feature to be &apos;fully operational&apos; when you are able to see the same results as before.</li>
+      <li>Review the design of the Bunnings form (see top of page) as a guide to selecting the most suitable layout and inclusions.</li>
+      <li>You may <a href="https://www.ebay.com.au" target="_blank">visit the store</a> and use its search facility to understand more about the way it functions.</li>
+      <li>An eBay company logo is available at the following URL: <a href="https://mywebspace.net.au/UOWC128/laboratories/laboratory_4/images/ebay_exercise_logo.png" target="_blank">https://mywebspace.net.au/UOWC128/laboratories/laboratory_4/images/ebay_exercise_logo.png</a>.</li>
+    </ul>
+
+    <!-- INSERT SOLUTION HERE -->
+
+    <hr>
+
+    <p style="color: #a3a3a3;">Created by Jason Rodriguez (Version 2.0)</p>
+
+  </body>
+
+</html>

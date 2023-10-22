@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Assignment 3 (Task 4 XSLT) by Matthew Bergamini (8137225) -->
+
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:template match="/">
+
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>DPIT128: Assignment 3 (Task 4 XSLT)</title>
+        <style>
+
+          /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+          body {
+            background-color: #ededed;
+            text-align: center;
+          }
+
+          table {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+          /* INSERT INTERNAL CSS HERE */
+
+          td, table, tr {
+            border: 1px solid #808080;
+            text-align: center;
+            border-spacing: 0;
+          }
+
+          table tr:nth-child(even) {
+            background-color: #e0e0e0;
+          }
+
+          th, td {
+            padding: 10px;
+            font-size: 20px;
+            border: 1px solid #808080;
+          }
+
+          th {
+            background-color: #b9b9b9;
+          }
+
+        </style>
+      </head>
+      <body>
+        <h1>DPIT128: Assignment 3</h1>
+        <h2>Matthew Bergamini (8137225)</h2>
+        <h3>Date Due: 18/08/2023</h3>
+        <hr />
+        <p style="font-weight: bold;">
+          I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br />
+          <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+            https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+          </a>
+        </p>
+        <hr />
+        <h2>Task 4 XSLT</h2>
+
+        <!-- BEGIN: Task 4 Solution -->
+        <h2>Hotel Comparison Table</h2>
+        <table>
+        <caption style="font-size: 20px; padding-bottom: 10px;"> Search Location: Wollongong</caption>
+          <tr>
+            <th>Hotel Name</th>
+            <th>Star Rating</th>
+            <th>Total Ratings</th>
+            <th>Overall Score</th>
+          </tr>
+
+          <xsl:for-each select="comparisons/hotel">
+            <tr>
+              <td id="tableGrid"><xsl:value-of select="name"/></td>
+              <td><xsl:value-of select="stars"/></td>
+              <td><xsl:value-of select='format-number(reviews, "#,###")'/></td>
+               
+                <xsl:variable name="scoreValue" select="score"/>
+                  <xsl:choose>
+                    <xsl:when test="$scoreValue &lt; 7.5">
+                      <td style="background-color: #ff9999;"><xsl:value-of select="score"/></td>
+                    </xsl:when>
+                    <xsl:when test="$scoreValue &lt; 8.0">
+                      <td style="background-color: #ffdb99;"><xsl:value-of select="score"/></td>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <td style="background-color: #99cc99;"><xsl:value-of select="score"/></td>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                
+            </tr>
+          </xsl:for-each>
+        </table>
+        <xsl:variable name="web" select="comparisons/@url"/>
+        <xsl:variable name="companyName" select="comparisons/@company"/>
+        <xsl:variable name="date-year" select="substring(comparisons/@dated, 1, 4)" />
+        <xsl:variable name="date-month" select="substring(comparisons/@dated, 6, 2)" />
+        <xsl:variable name="date-day" select="substring(comparisons/@dated, 9, 2)" />
+        <xsl:variable name="formatted-date" select="concat($date-day, '/', $date-month, '/', $date-year)" />
+        <h3>This information was obtained from <a href="{$web}" target="_blank"><xsl:value-of select="$companyName" /></a> on <xsl:value-of select="$formatted-date" />.</h3>
+
+        <!-- END: Task 4 Solution -->
+
+        <p>&#169; Matthew Bergamini</p>
+      </body>
+    </html>
+
+  </xsl:template>
+
+</xsl:stylesheet>

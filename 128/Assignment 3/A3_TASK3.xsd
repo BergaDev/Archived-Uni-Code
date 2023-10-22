@@ -1,0 +1,35 @@
+<!-- Matthew Bergamini 8127225-->
+
+<xs:schema 
+xmlns="https://bergamini.au/Session2/128/Assignment3/A3_TASK3.xsd"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"
+
+elementFormDefault="qualified">
+
+<xs:element name="comparisons">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="hotel" minOccurs="0" maxOccurs="unbounded">
+      <!-- Needed the occurs parts to allow more than one hotel-->
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"  />
+            <xs:element name="stars" type="xs:int"  />
+            <xs:element name="reviews" type="xs:int"  />
+            <xs:element name="score" type="xs:decimal"  />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <!-- I hope i've done this right, I hope-->
+    <!-- Seems to have no errors-->
+    <xs:attribute name="dated" type="xs:date" use="required" />
+    <xs:attribute name="location" type="xs:string" use="required" />
+    <xs:attribute name="company" type="xs:string" use="required" />
+    <xs:attribute name="url" type="xs:anyURI" use="required" />
+
+  </xs:complexType>
+  
+</xs:element>
+
+</xs:schema>

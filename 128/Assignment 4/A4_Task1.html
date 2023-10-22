@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4 (Task ?) by INSERT FULL NAME (INSERT STUDENT NUMBER) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task ?)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus {
+        box-shadow: 0px 0px 1px 1px #95b7ee;
+        outline: none;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+        .column {
+          float: left;
+          padding: 5px;
+          margin: 10px;
+        }
+
+        .row {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        img {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 15px;
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 5px;
+
+          width: 110px;
+          border: 1px dotted #808080;
+        }
+
+        input {
+          width: 500px;
+          border: 1px dotted #808080;
+          border-radius: 5px; /* don't think this was specified*/
+        }
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+
+      function mouseOver(){
+       document.getElementById("h3-change").style.fontFamily = "courier"; //DUH needs the "" to work
+       document.getElementById("h3-change").style.color = "#009900";
+       document.getElementById("h3-change").style.textShadow = "3px 3px 3px #a6a6a6";
+       // document.getElementById("h3-change").style.fontSize = "x-large"; OK THIS WORKS
+      }
+
+      function mouseScroll(){
+        document.getElementById("text-in").style.fontFamily = "arial";
+        document.getElementById("text-in").style.fontStyle = "italic";
+        document.getElementById("text-in").style.color = "#ff0000"; //DUH needs the "" to work
+      }
+
+      function doubleClick(){
+        //double click
+
+        let name = prompt("Please enter your name", "name");
+
+        alert('You have performed a "dblclick" event, ' + name ); //use the singular '' so that "" can be shown on the alert
+          
+      }
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 4</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 01/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 1: DOM Events & JavaScript Handlers</h2>
+
+    <!-- BEGIN: Task 1 Solution -->
+    <!-- Here be the images-->
+
+    <div class="row">
+      <div class="column">
+        <img src="https://mywebspace.net.au/UOWC128/assignment_4/images/html_5.png" alt="html_5 logo, first image" ondblclick="doubleClick()">
+      </div>
+      <div class="column">
+        <img src="https://mywebspace.net.au/UOWC128/assignment_4/images/css_3.png" alt="css_3 logo, second image" onmouseover="mouseOver()">
+      </div>
+      <div class="column">
+        <img src="https://mywebspace.net.au/UOWC128/assignment_4/images/java_script.png" alt="JavaScript logo, third image" onwheel="mouseScroll()">
+      </div>
+    </div>
+
+    <h3 id="h3-change"> Place your mouse over the second image to change this text </h3>
+
+    <form>
+      <input type="text" id="text-in" name="text-in" style="width: 500px; text-align: center; color: grey;" value="Scroll over the third image to change this text!"><br><br>
+    </form>
+    
+
+    <!-- END: Task 1 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4 (Task 4) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task 4)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus {
+        box-shadow: 0px 0px 1px 1px #95b7ee;
+        outline: none;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      .interface {
+        border-top-left-radius: 40px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 40px;
+        width: 360px;
+
+        border: 1px dotted #a8a8a8;
+        background-color: #f8f8f8;
+        box-shadow: 5px 5px 5px #808080;
+
+        font-family: arial;
+        font-size: 14px;
+
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .reflection {
+        width: 525px;
+        height: 50px;
+
+        border-top-left-radius: 10px;
+        border-top-right-radius: 40px;
+        border-bottom-left-radius: 40px;
+        border-bottom-right-radius: 10px;
+
+        font-family: calibri;
+
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .text {
+       
+      }
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+
+      function loadEffects() {
+            const output = document.getElementById("reflection"); 
+
+            if (localStorage.getItem('textColour')) {
+                
+                output.style.color = localStorage.getItem('textColour');
+
+                
+                document.getElementById("textColour").value = localStorage.getItem('textColour');
+            } else {
+                
+                output.style.color = document.getElementById("textColour").value;
+            }
+            console.log("TextColour is" + textColour);
+        }
+
+        function handleFormChange() {
+            const backgroundColour = document.querySelector('input[name="reflection"]:checked').value;
+            const textColour = document.getElementById("reflection").value;
+            const boxShadowDepth = document.getElementById("boxShadow").value;
+            const borderStyleValue = document.querySelector('input[name="borderStyle"]:checked').value;
+
+            localStorage.setItem('backgroundColour', backgroundColour);
+            localStorage.setItem('textColour', textColour);
+            localStorage.setItem('boxShadowDepth', boxShadowDepth);
+            localStorage.setItem('borderStyleValue', borderStyleValue);
+
+            console.log(" textColour is " + textColour);
+        }
+
+        document.addEventListener("Loading values ", loadEffects);
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 4</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 01/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 4: Local Storage and JavaScript Styling</h2>
+
+    <!-- BEGIN: Task 4 Solution -->
+
+    <div class="interface">
+      <form>
+        <label for="firstBack">Background Colour:</label>
+        <input type="radio"  name="backColour" id="firstBack">
+        <input type="radio"  name="backColour"> <br>
+
+        <label for="textColour">Text Colour:</label>
+        <select name="textColour" id="textColour">
+          <option value="#ffe5e5">Red (#ffe5e5)</option>
+          <option value="#e5f2e5">Green (#e5f2e5)</option>
+          <option value="#e5e5ff">Blue (#e5e5ff)</option>
+          
+          <option value="#ff0000">Red (#ff0000)</option>
+          <option value="#008000">Green (#008000)</option>
+          <option value="#0000ff">Blue (#0000ff)</option>
+        </select><br>
+
+        <label for="boxShadow">Box Shadow Depth: </label>
+        <input type="range" id="boxShadow"> <br>
+
+        <label for="borderStyle1">Border Style Value: </label>
+        <input type="radio" id="borderStyle1" name="border">
+        <label for="borderStyle2">Dotted</label>
+        <input type="radio" id="borderStyle2" name="border">
+        <label for="borderStyle2">Solid</label>
+
+      </form>
+
+    </div><br><br>
+
+
+    <div class="reflection" id="reflection">
+      <h1 class="text">Introduction to Web Technology</h1>
+    </div>
+
+    <!-- END: Task 4 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

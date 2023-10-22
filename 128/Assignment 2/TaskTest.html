@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Australia Search</title>
+  <style>
+    /* Type selector for main div element */
+    div#main {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    /* Class selector for margin */
+    .control {
+      margin: 20px;
+    }
+
+    /* Attribute selector for input fields and radio buttons */
+    input[type="text"],
+    input[type="radio"] {
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      background-color: #fffff9;
+      padding: 5px;
+      border: 1px dotted #404040;
+      border-radius: 5px;
+      width: 350px;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" style="background-color: #eaeff6;">
+    <form action="https://www.google.com.au/search" method="get" target="_blank">
+      <img src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_2.png" alt="Google Australia Logo" class="image">
+      <div class="control">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="q" placeholder="Enter your search query" required>
+      </div>
+      <div class="control">
+        <label for="language">Language:</label>
+        <input type="radio" id="english" name="hl" value="en-AU" checked>
+        <label for="english">English</label>
+        <input type="radio" id="french" name="hl" value="fr-AU">
+        <label for="french">French</label>
+      </div>
+      <div class="control">
+        <label for="submit"></label>
+        <input type="submit" id="submit" value="Search">
+      </div>
+    </form>
+  </div>
+</body>
+</html>

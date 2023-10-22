@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4 (Task 2) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task 2)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus {
+        box-shadow: 0px 0px 1px 1px #95b7ee;
+        outline: none;
+      }
+
+      
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      img {
+        width: 200px;
+        border-radius: 100px;
+        box-shadow: 5px 5px 5px 5px #888888;
+        margin: 20px;
+      }
+
+      input {
+        cursor: pointer;
+      }
+
+      label {
+        cursor: pointer;
+      }
+
+      div {
+       width: 300px;
+       margin-left: auto;
+       margin-right: auto;
+       font-family: arial;
+      }
+
+      #clock {
+        background-color: white;
+        border: 1px dotted #808080;
+      }
+
+      .buttons {
+        border: 1px dotted #808080;
+        width: 70px;
+        height: 20px;
+        border-radius: 5px;
+      }
+
+      #direction {
+        background-color: #bfbfbf;
+        height: 50px;
+        text-align: center;
+
+        display: flex;
+        justify-content: center; /* Horizontal centering */
+        align-items: center;     /* Vertical centering */
+        
+      }
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+      let taskID = 69420; //Hopefully nothing else is using this id number
+      let count = 0;
+      let timeTime = 1000;
+      let clickCount = 0;
+      let runCount = 0;
+      let on = 0;
+
+      var index = 0;
+
+      let first;
+      let second;
+      let third;
+      let fourth;
+
+      const imageFiles = [
+        "https://mywebspace.net.au/UOWC128/assignment_4/images/clock_state_1.png",
+        "https://mywebspace.net.au/UOWC128/assignment_4/images/clock_state_2.png",
+        "https://mywebspace.net.au/UOWC128/assignment_4/images/clock_state_3.png",
+        "https://mywebspace.net.au/UOWC128/assignment_4/images/clock_state_4.png"
+      ];
+
+
+      function timerFuncStart(){
+        clickCount++;
+        if (taskID == 69420){
+          taskID = setInterval(changeImage, timeTime);
+        } else {
+          clearInterval(taskID);
+          taskID = 69420;
+        }
+
+        //disable all the radio button   
+        document.getElementById("1").disabled = true;  
+        document.getElementById("2").disabled = true;  
+        document.getElementById("5").disabled = true;  
+       
+
+      }
+
+      function changeImage(){
+        var imageLocation = document.getElementById("image");
+        count++;
+        console.log("Yup, we're here again " + "Times " + count + " The selected interval is " + timeTime + " TaskID is " + taskID + " Click count is " + clickCount);
+        cycleImage();
+        }
+
+
+        
+      
+
+      function stopTimer(){
+        clearInterval(taskID);
+        taskID = 69420;
+
+          //unhide 
+          document.getElementById("1").disabled = false;  
+          document.getElementById("2").disabled = false;  
+          document.getElementById("5").disabled = false; 
+
+          document.getElementById("image").src="https://mywebspace.net.au/UOWC128/assignment_4/images/clock_state_1.png";
+      }
+
+      function reverse(){
+        if (on == 0){
+          first = 1;
+          second = 2;
+          third = 3;
+          fourth = 4;
+        } else {
+          on = 0;
+          first = 4;
+          second = 3;
+          third = 2;
+          fourth = 1;
+        }
+
+      }
+
+      function one(){
+        timeTime = 1000;
+      }
+
+      function two(){
+        timeTime = 3000;
+      }
+
+      function five(){
+        timeTime = 5000;
+      }
+
+      function cycleImage()
+      {
+        var direction = document.getElementById("reverse").checked; // Obtain the direction value
+        //var direction = TRUE;
+
+        console.log("Direction is " + direction);
+
+        if (direction == false) // Forward (TRUE) = Increment; Reverse (FALSE) = Decrement
+        {
+          index = index == 3 ? 0 : index + 1; // Note the conditional operator (reduces lines of code)
+        }
+        else
+        {
+          index = index == 0 ? 3 : index - 1;
+        }
+
+        document.getElementById("image").src = imageFiles[index]; // Assign the URL stored within the array element
+      }
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 4</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 01/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 2: JavaScript Timer</h2>
+
+    <!-- BEGIN: Task 2 Solution -->
+
+    <div id="clock">
+
+      <img src="https://mywebspace.net.au/UOWC128/assignment_4/images/clock_state_1.png" alt="html_5 logo, first image" id="image">
+
+      <form>
+        
+        <input type="radio" id="1" name="timeChoose"  onclick="one()" checked>
+        <label for="1">1 Second Interval</label><br>
+        
+        <input type="radio" id="2" name="timeChoose"  onclick="two()">
+        <label for="2">3 Second Interval</label><br>
+        
+        <input type="radio" id="5" name="timeChoose" onclick="five()">
+        <label for="5">5 Second Interval</label><br>
+
+      </form><br>
+
+    
+
+      <div id="direction">
+      <form>
+
+        <input type="checkbox" id="reverse" name="direction">
+        <label for="reverse">Reverse Direction</label>
+
+      </form>
+
+      </div><br>
+
+    </div> <br>
+
+   
+
+      <form id="buttonBox">
+
+        <input type="button" value="Start" onclick="timerFuncStart()" class="buttons">
+        <input type="button" value="Stop" onclick="stopTimer()" style="margin-left: 40px;" class="buttons">
+      </form>
+
+    
+
+    <!-- END: Task 2 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

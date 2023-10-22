@@ -1,0 +1,408 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// CarType enum
+enum CarType {
+    SUV,
+    SED,
+    LUX,
+    HATCH,
+    // Add more types as needed
+}
+
+// Car class
+class Car {
+    String model;
+    CarType type;
+    int manufacturingYear;
+    double price;
+
+    // Constructor
+    public Car(String model, CarType type, int manufacturingYear, double price) {
+        this.model = model;
+        this.type = type;
+        this.manufacturingYear = manufacturingYear;
+        this.price = price;
+    }
+
+    // Add getters and setters if needed
+}
+
+// MyDate class
+class MyDate {
+    int year;
+    int month;
+    int day;
+
+    // Constructor
+    public MyDate(int year, int month, int day) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+    }
+
+    // Add getters and setters if needed
+}
+
+// Address class
+class Address {
+    private int streetNum;
+    private String street;
+    private String suburb;
+    private String city;
+
+    // Constructor
+    public Address(int streetNum, String street, String suburb, String city) {
+        this.streetNum = streetNum;
+        this.street = street;
+        this.suburb = suburb;
+        this.city = city;
+    }
+
+    // Accessors (get methods)
+    public int getStreetNum() {
+        return streetNum;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getSuburb() {
+        return suburb;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    // Mutators (set methods)
+    public void setStreetNum(int streetNum) {
+        this.streetNum = streetNum;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setSuburb(String suburb) {
+        this.suburb = suburb;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    // Override the toString method to convert the address to a string
+    @Override
+    public String toString() {
+        return streetNum + " " + street + ", " + suburb + ", " + city;
+    }
+}
+
+// InsurancePolicy class
+abstract class InsurancePolicy {
+    String policyHolderName;
+    int id;
+    Car car;
+    int numberOfClaims;
+    MyDate expiryDate;
+
+    // Constructor
+    public InsurancePolicy(String policyHolderName, int id, Car car, int numberOfClaims, MyDate expiryDate) {
+        this.policyHolderName = policyHolderName;
+        this.id = id;
+        this.car = car;
+        this.numberOfClaims = numberOfClaims;
+        this.expiryDate = expiryDate;
+    }
+
+    // Abstract method for calculating premium payment
+    public abstract double calcPayment(int flatRate);
+
+    // Static method to print a list of policies
+    public static void printPolicies(ArrayList<InsurancePolicy> policies, int flatRate) {
+        for (InsurancePolicy policy : policies) {
+            policy.print();
+            System.out.println("Premium: $" + policy.calcPayment(flatRate)); // Assuming flatRate is available
+            System.out.println();
+        }
+    }
+
+    // Static method to calculate the total premium payments for a list of policies
+    public static double calcTotalPayments(ArrayList<InsurancePolicy> policies, int flatRate) {
+        double totalPremium = 0;
+        for (InsurancePolicy policy : policies) {
+            totalPremium += policy.calcPayment(flatRate);
+        }
+        return totalPremium;
+    }
+
+    // Method to increase the policy's car price by the given percentage
+    public void carPriceRise(double risePercent) {
+        carPriceRise(risePercent);
+    }
+
+    // Static method to increase the price of cars for all policies in a list
+    public static void carPriceRiseAll(ArrayList<InsurancePolicy> policies, double risePercent) {
+        for (InsurancePolicy policy : policies) {
+            policy.carPriceRise(risePercent);
+        }
+    }
+
+    // Static method to filter a list of policies based on the car model
+    public static ArrayList<InsurancePolicy> filterByCarModel(ArrayList<InsurancePolicy> policies, String carModel) {
+        ArrayList<InsurancePolicy> filteredList = new ArrayList<>();
+        for (InsurancePolicy policy : policies) {
+            if (policy.car.model.equalsIgnoreCase(carModel)) {
+                filteredList.add(policy);
+            }
+        }
+        return filteredList;
+    }
+
+    // Print method to display policy details
+    public void print() {
+        System.out.println("Policy Holder Name: " + policyHolderName);
+        System.out.println("Policy ID: " + id);
+        System.out.println("Car Details: " + car.model + " - " + car.type + " - " + car.manufacturingYear);
+        System.out.println("Number of Claims: " + numberOfClaims);
+        System.out.println("Expiry Date: " + expiryDate.year + "-" + expiryDate.month + "-" + expiryDate.day);
+    }
+
+    // Add getters and setters if needed
+}
+
+// ThirdPartyPolicy class
+class ThirdPartyPolicy extends InsurancePolicy {
+    String comments;
+
+    // Constructor
+    public ThirdPartyPolicy(String policyHolderName, int id, Car car, int numberOfClaims, String comments, MyDate expiryDate) {
+        super(policyHolderName, id, car, numberOfClaims, expiryDate);
+        this.comments = comments;
+    }
+
+    // Override the calcPayment method for ThirdPartyPolicy
+    @Override
+    public double calcPayment(int flatRate) {
+        double thirdPartyPremium = car.price / 100 + numberOfClaims * 200 + flatRate;
+        return thirdPartyPremium;
+    }
+
+    // Override the print method to include additional attributes
+    @Override
+    public void print() {
+        super.print();
+        System.out.println("Comments: " + comments);
+    }
+
+    // Override the toString method to include additional attributes
+    @Override
+    public String toString() {
+        return super.toString() + "\nComments: " + comments;
+    }
+
+    // Add getters and setters if needed
+}
+
+// ComprehensivePolicy class
+class ComprehensivePolicy extends InsurancePolicy {
+    int driverAge;
+    int level;
+
+    // Constructor
+    public ComprehensivePolicy(String policyHolderName, int id, Car car, int numberOfClaims, int driverAge, int level, MyDate expiryDate) {
+        super(policyHolderName, id, car, numberOfClaims, expiryDate);
+        this.driverAge = driverAge;
+        this.level = level;
+    }
+
+    // Override the calcPayment method for ComprehensivePolicy
+    @Override
+    public double calcPayment(int flatRate) {
+        double comprehensivePremium = car.price / 50 + numberOfClaims * 200 + flatRate;
+        if (driverAge < 30) {
+            comprehensivePremium += (30 - driverAge) * 50;
+        }
+        return comprehensivePremium;
+    }
+
+    // Override the print method to include additional attributes
+    @Override
+    public void print() {
+        super.print();
+        System.out.println("Driver Age: " + driverAge);
+        System.out.println("Level: " + level);
+    }
+
+    // Override the toString method to include additional attributes
+    @Override
+    public String toString() {
+        return super.toString() + "\nDriver Age: " + driverAge + "\nLevel: " + level;
+    }
+
+    // Add getters and setters if needed
+}
+
+// User class
+class User {
+    private String name;
+    private int userID;
+    private Address address;
+    private ArrayList<InsurancePolicy> policies;
+
+    // Constructor
+    public User(String name, int userID, Address address) {
+        this.name = name;
+        this.userID = userID;
+        this.address = address;
+        this.policies = new ArrayList<>();
+    }
+
+    // Method to add a policy to the user's list of policies
+    public boolean addPolicy(InsurancePolicy policy) {
+        // Check if the policyID is unique
+        for (InsurancePolicy p : policies) {
+            if (p.id == policy.id) {
+                return false;
+            }
+        }
+        policies.add(policy);
+        return true;
+    }
+
+    // Method to find a policy by policyID
+    public InsurancePolicy findPolicy(int policyID) {
+        for (InsurancePolicy policy : policies) {
+            if (policy.id == policyID) {
+                return policy;
+            }
+        }
+        return null; // Policy not found
+    }
+
+    // Method to print all the information of this user, including policies information
+    public void print() {
+        System.out.println("User ID: " + userID);
+        System.out.println("Name: " + name);
+        System.out.println("Address: " + address);
+        System.out.println("Policies Information:");
+        InsurancePolicy.printPolicies(policies, 100); // Assuming flatRate is 100
+    }
+
+    // Method to calculate the total premium payments for all policies owned by this user
+    public double calcTotalPremiums(int flatRate) {
+        double totalPremium = 0;
+        for (InsurancePolicy policy : policies) {
+            totalPremium += policy.calcPayment(flatRate);
+        }
+        return totalPremium;
+    }
+
+    // Method to increase the price of cars for all policies owned by this user
+    public void carPriceRiseAll(double risePercent) {
+        for (InsurancePolicy policy : policies) {
+            policy.car.price *= (1 + risePercent);
+        }
+    }
+
+    // Method to filter policies based on the car model for this user
+    public ArrayList<InsurancePolicy> filterByCarModel(String carModel) {
+        ArrayList<InsurancePolicy> filteredList = new ArrayList<>();
+        for (InsurancePolicy policy : policies) {
+            if (policy.car.model.equalsIgnoreCase(carModel)) {
+                filteredList.add(policy);
+            }
+        }
+        return filteredList;
+    }
+}
+
+public class InsuranceTest {
+    public static void main(String[] args) {
+        // Create some car instances
+        Car car1 = new Car("Toyota Corolla", CarType.SED, 2019, 25000);
+        Car car2 = new Car("BMW X5", CarType.SUV, 2021, 60000);
+        Car car3 = new Car("Mercedes C-Class", CarType.LUX, 2020, 45000);
+
+        // Create insurance policy instances
+        ThirdPartyPolicy policy1 = new ThirdPartyPolicy("John Doe", 101, car1, 2, "Basic coverage", new MyDate(2025, 6, 30));
+        ComprehensivePolicy policy2 = new ComprehensivePolicy("Alice Smith", 102, car2, 1, 28, 2, new MyDate(2024, 8, 15));
+        ComprehensivePolicy policy3 = new ComprehensivePolicy("Bob Johnson", 103, car3, 0, 35, 3, new MyDate(2023, 12, 31));
+
+        // Add policies to a list
+        ArrayList<InsurancePolicy> policies = new ArrayList<>();
+        policies.add(policy1);
+        policies.add(policy2);
+        policies.add(policy3);
+
+        // Create a user
+        Address userAddress = new Address(123, "Main St", "Downtown", "New York");
+        User user = new User("Michael", 1001, userAddress);
+
+        // Add policies to the user
+        user.addPolicy(policy1);
+        user.addPolicy(policy2);
+        user.addPolicy(policy3);
+
+        // Print user information along with policies details
+        System.out.println("User Information:");
+        user.print();
+
+        // Find a policy by policy ID (valid)
+        InsurancePolicy foundPolicy = user.findPolicy(102);
+        if (foundPolicy != null) {
+            System.out.println("Found Policy:");
+            foundPolicy.print();
+            foundPolicy.car.price *= 1.1; // Car price rise by 10%
+            System.out.println("Policy after car price rise:");
+            foundPolicy.print();
+            foundPolicy.policyHolderName = "Robert";
+            foundPolicy.car.model = "Toyota Camry 2018";
+        } else {
+            System.out.println("Policy has not been found");
+        }
+
+        // Change the city of the user
+        user.address.setCity("Wollongong");
+
+        // Ask the customer to enter the information for a new address
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter new street number: ");
+        int newStreetNum = scanner.nextInt();
+        System.out.print("Enter new street name: ");
+        String newStreet = scanner.next();
+        System.out.print("Enter new suburb: ");
+        String newSuburb = scanner.next();
+        System.out.print("Enter new city: ");
+        String newCity = scanner.next();
+
+        Address newAddress = new Address(newStreetNum, newStreet, newSuburb, newCity);
+        user.address = newAddress;
+
+        // Print user information after address change
+        System.out.println("User Information after address change:");
+        user.print();
+
+        // Print the total premium payments for all policies this user owns
+        double totalPremium = user.calcTotalPremiums(100); // Assuming flatRate is 100
+        System.out.println("Total Premium Payments: $" + totalPremium);
+
+        // Add 10% to the price of cars for all the policies this user owns
+        user.carPriceRiseAll(0.1);
+
+        // Print the total premium payments again after the price increase
+        totalPremium = user.calcTotalPremiums(100); // Assuming flatRate is 100
+        System.out.println("Total Premium Payments after 10% car price increase: $" + totalPremium);
+
+        // Ask the customer to enter a car model for filtering
+        System.out.print("Enter car model to filter policies: ");
+        String carModelToFilter = scanner.next();
+        ArrayList<InsurancePolicy> filteredPolicies = user.filterByCarModel(carModelToFilter);
+
+        // Print the filtered list of policies
+        System.out.println("\nFiltered Policies:");
+        InsurancePolicy.printPolicies(filteredPolicies, 100); // Assuming flatRate is 100
+    }
+}

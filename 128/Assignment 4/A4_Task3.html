@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4 (Task 3) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task 3)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus {
+        box-shadow: 0px 0px 1px 1px #95b7ee;
+        outline: none;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      .guessBox {
+        color: #ffa500;
+        width: 100px;
+        height: 80px;
+        text-align: center;
+
+        border: 1px dotted #ff5000;
+        background-color: #fff9ef;
+        font-size: 50px;
+        border-radius: 25px;
+        margin: 20px;
+      }
+
+      .userBox {
+        width: 150px;
+        height: 80px;
+        font-size: 50px;
+        text-align: center;
+        border-radius: 5px;
+        margin: 10px;
+        border: 1px dotted #0080ff;
+        color: #0080ff;
+        background-color: #ecf2f4;
+        cursor: pointer;
+      }
+
+      #start {
+        width: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px dotted #008000;
+        background-color: #ecf4f2;
+        color: #008000;
+        cursor: pointer;
+      }
+
+      label {
+        font-size: 16px;
+        font-family: Arial;
+        line-height: 23px;
+        cursor: pointer;
+      }
+
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+
+      let randomNum1;
+      let randomNum2;
+      let randomNum3;
+      let userIn = 6;
+      let count = 0;
+      let userTest = false;
+      let sound = new Audio('https://mywebspace.net.au/UOWC128/assignment_4/audio/applause.mp3');
+
+      function randomNumGen(){
+
+       userTest = document.getElementsByName("userInput")[0].value;
+      // console.log("user in is" + userTest);
+
+        if (count == 0 && userTest >= 1){
+          randomNum1 = Math.floor(Math.random() * (11 - 1) + 1);
+         // console.log("The random number is " +  randomNum1);
+          document.getElementById("firstBox").value = randomNum1;
+          count++;
+          randomNumGen();
+        } else if (count == 1){
+          randomNum2 = Math.floor(Math.random() * (11 - 1) + 1);
+          if (randomNum2 == randomNum1){
+            randomNumGen(); //do it again to get differnt 
+          }
+          //console.log("The random number is " +  randomNum2);
+          document.getElementById("secondBox").value = randomNum2;
+          count++;
+          randomNumGen();
+        } else if (count == 2){
+          randomNum3 = Math.floor(Math.random() * (11 - 1) + 1);
+          if (randomNum3 == randomNum2 || randomNum3 == randomNum1){
+            randomNumGen();
+          }
+          //console.log("The random number is " +  randomNum3);
+          document.getElementById("thirdBox").value = randomNum3;
+          count++;
+          randomNumGen();
+        } else if (count == 3){
+          //console.log("Should be done");
+          count = 0;
+        } else {
+
+        }
+        
+        
+      }
+
+      function userCheck(){
+        randomNumGen();
+
+        let isInt = true;
+
+       // isInt = isInterger(userIn);
+
+       if (isNaN(userTest)){
+          document.getElementById("image").src="https://mywebspace.net.au/UOWC128/assignment_4/images/error_state.png";
+          document.getElementById("firstBox").value = "X";
+          document.getElementById("secondBox").value = "X";
+          document.getElementById("thirdBox").value = "X";
+        } else {
+              if (randomNum1 == userTest || randomNum2 == userTest || randomNum3 == userTest){
+              //switch to winning image
+              document.getElementById("image").src="https://mywebspace.net.au/UOWC128/assignment_4/images/win_state.png";
+              //play audio
+              sound.play();
+              } else if (userTest == false){
+              
+            } else if (userTest >=11 || userTest <= 0){
+              //Gives error on unepexted value range
+              document.getElementById("image").src="https://mywebspace.net.au/UOWC128/assignment_4/images/error_state.png";
+            } 
+            else { 
+              //switch to wrong image
+              document.getElementById("image").src="https://mywebspace.net.au/UOWC128/assignment_4/images/loss_state.png";
+            } 
+            }
+          }
+
+          function handleKeyPress(event) {
+            if (event.key === "Enter") {
+              userCheck();
+            }
+          } //I stumbled into this one, don't know if it even needs to be done
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 4</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 01/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 3: Randomisation &amp; Repetition</h2>
+
+    <!-- BEGIN: Task ? Solution -->
+
+    <!-- Message image goes here -->
+
+    <img src="https://mywebspace.net.au/UOWC128/assignment_4/images/initial_state.png" alt="Inital State Image" id="image">
+
+    <form>
+      <input type="text" onclick="randomNumGen()" value="?" id="firstBox" class="guessBox" readonly>
+      <input type="text" id="secondBox" value="?" class="guessBox" readonly>
+      <input type="text" id="thirdBox" value="?" class="guessBox" readonly>
+
+    </form>
+
+    <form>
+      <label for="userInput">Enter a number between 1 to 10 (inclusive) <br> and then click the "start" button to begin!</label><br><br>
+      <input type="text" value="" name="userInput" class="userBox" id="userInput" autofocus onkeydown="handleKeyPress(event)"><br>
+      <input type="button" value="Start" onclick="userCheck()" id="start" onkeydown="handleKeyPress(event)">
+    </form>
+
+    
+
+    <!-- END: Task ? Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

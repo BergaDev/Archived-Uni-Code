@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<!-- Assignment 5 (Task 4) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 5 (Task ?)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus {
+        box-shadow: 0px 0px 1px 1px #8eb5d5;
+        outline: none;
+      }
+
+      input:hover {
+        cursor: pointer;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      input {
+        width: 100px;
+        padding: 10px;
+        background-color: #ecf2f4;
+        border-radius: 5px;
+      }
+
+      th {
+        background-color: #b9b9b9;
+      }
+
+      caption {
+        font-size: 21px;
+        font-weight: bold;
+        padding-top: 30px;
+        padding-bottom: 10px;
+      }
+
+      th, td {
+        padding: 10px;
+        font-size: 20px;
+        border: 1px solid #808080;
+        border-collapse: collapse;
+      }
+
+      table {
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #808080;
+        border-collapse: collapse;
+      }
+
+      .twenty{
+        background-color: #ff9999;
+      }
+
+      .thirty{
+        background-color: #ffdb99;
+      }
+
+      .otherwise{
+        background-color: #99cc99;
+      }
+
+      tr:nth-child(even) {
+        background-color: #e0e0e0;
+      }
+
+      .name {
+        text-align: left;
+      }
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+      /*This function uses an XMLHttpRequest object to retrieve the contents of the json file.*/
+    function processRequest() {
+      const xhrObject = new XMLHttpRequest();
+
+      xhrObject.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          processResponse(this.responseText);
+        }
+      };
+      xhrObject.open("get", "A5_Task3.json", true);
+      xhrObject.send();
+    }
+      
+      function processResponse(jsonText) {
+        var output = "";
+        const response = JSON.parse(jsonText);
+        
+        
+        for (let index = 0; index < response.driverStats.length; index++) {
+          response.driverStats[index].totalLosses = response.driverStats[index].starts - response.driverStats[index].wins;
+          response.driverStats[index].percentage = ((response.driverStats[index].wins / response.driverStats[index].starts)* 100).toFixed(2);
+        }
+        
+        response.driverStats.sort((a, b) => b.percentage - a.percentage);
+
+        output += "<table>";
+
+        output += "<caption>" + response.topic + ": " + response.subject + " </caption>";
+
+        output += "<tr>";
+        output += "<th>Rank</th>";
+        output += "<th>Driver Name</th>";
+        output += "<th>Total Starts</th>";
+        output += "<th>Total Wins</th>";
+        output += "<th>Total Losses</th>";
+        output += "<th>Win Percentage</th>";
+        output += "</tr>";
+
+        for (let index = 0; index < response.driverStats.length; index++) {
+          //Start the rows
+        output += "<tr>";
+        
+        output += "<td>" + response.driverStats[index].rank + "</td>";
+        //Create the hyperlink per person
+        var personLink = response.driverStats[index].link;
+        var personName = response.driverStats[index].name;
+        output += "<td class=\"name\">" + "<a target=_blank href=" + personLink + ">" + personName + "</a>" + "</td>";
+
+        output += "<td>" + response.driverStats[index].starts + "</td>";
+        output += "<td>" + response.driverStats[index].wins + "</td>";
+                
+        output += "<td>" + response.driverStats[index].totalLosses + "</td>";
+
+        var percentage = response.driverStats[index].percentage;
+
+        if (percentage < 20) {
+
+          output += "<td class=\"twenty\">" + percentage + "%" + "</td>";
+        } else if(percentage >= 20 && (percentage < 30)) {
+          output += "<td class=\"thirty\">" + percentage + "%" + "</td>";
+        } else {
+          output += "<td class=\"otherwise\">" + percentage + "%" + "</td>";
+        }
+        output += "</tr>";
+        }
+
+        //closing the table here
+        output += "</table>";
+
+
+        var sourceURL = response.sourceURL;
+        var sourceName = response.source;
+        output += "<h3>The raw data used for calculating these results has been obtained from " + "<a target=_blank href=" + sourceURL + ">" + sourceName + "</a>" + ".</h3>";
+        
+        document.getElementById("output-div").innerHTML = output;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 5</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 15/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 4: AJAX &amp; JSON</h2>
+
+    <!-- BEGIN: Task 4 Solution -->
+
+    <input type="button" id="start" value="Start" onclick="processRequest()">
+
+    <div id="output-div"></div>
+
+    <!-- END: Task 4 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

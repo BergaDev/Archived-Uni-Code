@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<!-- Assignment 2 (Task 1) by Matthew Bergamini (8137225) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 2 (Task 1)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      .container {
+        border: 1px dotted #404040;
+        box-shadow: 5px 5px 5px #808080;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 665px;
+      }
+
+      .field-label {
+        float: left;
+        line-height: 27px;
+        width: 110px;
+      }
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus, textarea:focus {
+        box-shadow: 0px 0px 1px 1px #99c65c;
+        outline: none;
+      }
+
+      input[type="reset"], input[type="submit"], label {
+        height: 25px;
+        width: 60px;
+      }
+
+      input[type="reset"], input[type="submit"], select {
+        border: 1px dotted #404040;
+      }
+
+      input[type="reset"]:hover, input[type="submit"]:hover, label:hover, select:hover {
+        cursor: pointer;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      div{
+        font-family: Arial;
+        font-size: 14px;
+        border: 1px dotted #404040;
+        box-shadow: 5px 5px 5px #808080;
+        background-color: #ffffff;
+        
+      }
+
+      .image{
+        margin: 20px;
+      }
+
+      .notMain{
+        clear:both;
+      }
+
+      .control{
+        margin: 20px;
+      }
+
+      input,
+      select{
+        font-family: Arial;
+        font-size: 13px;
+      }
+      
+
+    </style>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 2</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 28/07/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 3</h2>
+
+    <!-- BEGIN: Task 3 Solution -->
+    <!-- todo make input background internal -->
+
+
+    <div class="main" style="width: 800px; margin-left: auto; margin-right: auto;">
+        <img class="image" src="https://mywebspace.net.au/UOWC128/assignment_2/images/task_3.png" alt="The image, Placeholder text" style="height: 85px; width: 330px; margin-right: 70%;">
+        <form action="https://www.rebelsport.com.au/search" method="get" target="_blank">
+            
+            
+            <label for="search"> Search Terms: </label>
+            <!-- Like google also a q -->
+            <input type="text" name="q" id="search" style="width: 350px;  margin: 20px">
+
+            <input class="control" type="submit" value="Submit">
+            <input  class="control" type="reset" value="Reset">
+            <!-- Turns out value can go with name, "sz=12" can't just be put in name, set sz as name and assign it a value -->
+            <!-- Checked makes default, must change for every type-->
+            <section class="notMain" style="margin: 20px; margin-right: 60%;">
+                <input id="check" type="checkbox" name="sz" value="12" checked>
+                <label for="check">Limit results to 12 items per page</label>
+
+            <section class="notMain" style="margin: 20px; margin-right: 60%;">
+                    <select id="sorting" name="srule">
+                    <!-- value equals the terms defined by the url-->
+                    <!-- In the open space is the user facing name-->
+                    <!-- Use 'selected' to make an option the default-->
+                    <option value="price-ascending" selected>Sort items by price (ascending)</option>
+                    <option value="price-descending">Sort items by price (descending)</option>
+
+            </select>
+
+            <!-- sz=12 for limiting results-->
+                </section>
+            
+            </section>
+            
+            
+        </form>
+
+    </div>
+
+    <!-- END: Task 3 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

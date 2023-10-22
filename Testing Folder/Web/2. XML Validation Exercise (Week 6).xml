@@ -1,0 +1,59 @@
+<!-- Week 6: XML Validation Exercise; Created by Jason Rodriguez -->
+
+<!-- Can you find and fix the errors within this XML document? Use the "Online XML Validation Service" hyperlink
+available on Moodle to assist you with this task. -->
+
+<!DOCTYPE advertisements [
+
+<!ELEMENT advertisements (car*)>
+<!ELEMENT car (make, model, year, transmission, engine, price)>
+<!ELEMENT model (#PCDATA)>
+<!ELEMENT make (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT transmission (#PCDATA)>
+<!ELEMENT engine (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+
+<!ATTLIST advertisements source CDATA #IMPLIED>
+
+]>
+
+<advertisements source="https://www.carsales.com.au">
+
+  <car>
+    <make>Holden</make>
+    <model>Commodore VF MY15</model>
+    <year>2015</year>
+    <transmission>Automatic</transmission>
+    <engine>6 Cylinder 3.6L Petrol</engine>
+    <price>$13,990</price>
+  </car>
+
+  <car>
+    <make>Ford</make>
+    <model>Falcon XR6 Turbo MkII</model>
+    <year>2018</year>
+    <transmission>Manual</transmission>
+    <engine>6 Cylinder 4.0L Turbo Petrol</engine>
+    <price>17999</price>
+  </car>
+
+  <car>
+    <make>Volkswagen</make>
+    <model>Beetle MY16</model>
+    <year/>2016</year>
+    <transmission>Automatic</transmission>
+    <engine>4 Cylinder 1.4L Petrol</engine>
+    <price>15500</price>
+  </car>
+
+  <car>
+    <make>Mitsubishi</make>
+    <model>ASX XD MY19</model>
+    <year>2019</year>
+    <transmission>Manual</transmission>
+    <engine>4 Cylinder 2.0L Petrol</engine>
+    <price>16990</price>
+  </car>
+
+  </advertisements>

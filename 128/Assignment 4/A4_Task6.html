@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<!-- Assignment 4 (Task ?) by INSERT FULL NAME (INSERT STUDENT NUMBER) -->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>DPIT128: Assignment 4 (Task ?)</title>
+    <style>
+
+      /* BEGIN: Template CSS (DO NOT ALTER/REMOVE) ----------- */
+
+      body {
+        background-color: #ededed;
+        text-align: center;
+      }
+
+      input:focus, select:focus {
+        box-shadow: 0px 0px 1px 1px #95b7ee;
+        outline: none;
+      }
+
+      /* END: Template CSS (DO NOT ALTER/REMOVE) ------------- */
+
+      /* INSERT INTERNAL CSS HERE */
+
+      input {
+        width: 100px;
+        padding: 10px;
+        background-color: #ecf2f4;
+        cursor: pointer;
+        border-radius: 5px;
+        border: 1px solid #91adb7;
+      }
+
+      table {
+        border: 1px solid #91adb7;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+
+      th {
+        background-color: #abc7d1;
+        border: 1px solid #91adb7;
+        padding: 10px;
+      }
+
+      td {
+        border: 1px solid #91adb7;
+        padding: 10px;
+      }
+
+      div {
+        font-family: calibri;
+        font-size: 18px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f5f8f9;
+      }
+
+      tr:nth-child(odd) {
+        background-color: #e3ecef;
+      }
+      
+
+    </style>
+    <script>
+
+      // INSERT INTERNAL JAVASCRIPT HERE
+
+
+      function createTable() {
+        // Create a table element
+        titles = ["Subject Code", "Subject Name", "Credit Points", "Hours Per Week"];
+        subjectCodes = ["DPIT128", "DPIT127", "DPIT114", "DPIT113", "DPIT113"];
+        subjectNames = ["Introduction to Web Technology", "Networks and Communications", 
+        "System Analysis", "Problem Solving", "Programming Fundamentals"];
+        creditPoints = [6,6,6,6,6];
+        hours = [5,5,5,6,5];
+        
+        console.log("Course names are " + titles);
+
+
+        // Table
+        var table = document.createElement("table");
+        var headerRow = table.createTHead().insertRow(0);
+
+       
+        var headerCell1 = document.createElement("th");
+        headerCell1.innerHTML = titles[0];
+
+        var headerCell2 = document.createElement("th");
+        headerCell2.innerHTML = titles[1];
+
+        var headerCell3 = document.createElement("th");
+        headerCell3.innerHTML = titles[2];
+
+        var headerCell4 = document.createElement("th");
+        headerCell4.innerHTML = titles[3];
+        
+
+        //Append them
+        headerRow.appendChild(headerCell1);
+        headerRow.appendChild(headerCell2);
+        headerRow.appendChild(headerCell3);
+        headerRow.appendChild(headerCell4);
+
+        //Body bits
+        var body = table.createTBody();
+
+        //Loop when rows
+        for (var i = 0; i < subjectCodes.length; i++) {
+          var row = body.insertRow(i);
+
+          
+          var cell1 = row.insertCell(0); 
+          var cell2 = row.insertCell(1); 
+          var cell3 = row.insertCell(2); 
+          var cell4 = row.insertCell(3); 
+
+          
+          cell1.innerHTML = subjectCodes[i]; 
+          cell2.innerHTML = subjectNames[i]; 
+          cell3.innerHTML = creditPoints[i]; 
+          cell4.innerHTML = hours[i]; 
+        }
+
+        
+        var container = document.getElementById("outputTable");
+        container.appendChild(table);
+      }
+
+
+    </script>
+  </head>
+  <body>
+    <h1>DPIT128: Assignment 4</h1>
+    <h2>Matthew Bergamini (8137225)</h2>
+    <h3>Date Due: 01/09/2023</h3>
+    <hr>
+    <p style="font-weight: bold;">
+      I have viewed the College&apos;s policy regarding Academic Integrity as provided at the following URL:<br>
+      <a href="https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf" target="_blank">
+        https://www.uowcollege.edu.au/site-assets/uow-college-australia/documents/16-02-2023-Academic-Integrity-and-Student-Conduct-Policy.pdf
+      </a>
+    </p>
+    <hr>
+    <h2>Task 6: JavaScript Object &amp; DOM Nodes</h2>
+
+    <!-- BEGIN: Task 6 Solution -->
+
+    <h3>Please click the following button to generate a table:</h3>
+
+    <form>
+      <input type="button" value="Start" onclick="createTable()">
+    </form> <br> <br>
+
+    <div id="outputTable"></div>
+
+    <!-- END: Task 6 Solution -->
+
+    <p>&copy; Matthew Bergamini</p>
+  </body>
+</html>

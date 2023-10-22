@@ -1,0 +1,126 @@
+mysql> source Task5run.sql;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+--------------
+CREATE TABLE ITEM(code INT(8) NOT NULL, price INT(8) NOT NULL, PRIMARY KEY(code))
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE BOOK(ISBN INT NOT NULL, title VARCHAR(50) NOT NULL, publisher VARCHAR(50), PRIMARY KEY(ISBN))
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE DVD(dvd_number INT NOT NULL, producer VARCHAR(50), PRIMARY KEY(dvd_number))
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE Ship_date(date INT NOT NULL)
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE SHIPMENT(quantity INT NOT NULL)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+CREATE TABLE ORDERS(onumber INT(10) NOT NULL, order_date INT NOT NULL, discount INT, PRIMARY KEY(onumber))
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE CUSTOMER(phone INT NOT NULL, first_name VARCHAR(50), last_name VARCHAR(50), email VARCHAR(50), hobby VARCHAR(50), PRIMARY KEY(phone))
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE COUNTRY(cname VARCHAR(50), PRIMARY KEY(cname))
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+CREATE TABLE cnumber(cnumber int NOT NULL)
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DESCRIBE ITEM
+--------------
+
++-------+--------+------+-----+---------+-------+
+| Field | Type   | Null | Key | Default | Extra |
++-------+--------+------+-----+---------+-------+
+| code  | int(8) | NO   | PRI | NULL    |       |
+| price | int(8) | NO   |     | NULL    |       |
++-------+--------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+--------------
+DROP TABLE ITEM
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE BOOK
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE DVD
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE Ship_date
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE SHIPMENT
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+DROP TABLE ORDERS
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE CUSTOMER
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE COUNTRY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+DROP TABLE cnumber
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> notee;
